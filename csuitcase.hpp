@@ -2,6 +2,9 @@
  *  Header for CSuitcase classes.
  *  \author Miro Hrončok <miroslav.hroncok@fit.cvut.cz> */
 
+/** \mainpage
+ *  This project implements a suitcase and stuff you can put in. */
+
 #ifndef _CSUITCASE_
 #define _CSUITCASE_
 
