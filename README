@@ -1,0 +1,10 @@
+CSuitcase 1.0
+-------------
+
+Several C++ classes representing various stuff you can put into a suitcase.
+
+This is a free software you can redistribute it under the terms of WTFPL - see COPYING.
+
+For instructions how to run this, see INSTALL.
+
+Report bugs to the author - Miro Hrončok <miroslav.hroncok@fit.cvut.cz>.

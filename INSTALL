@@ -1,0 +1,13 @@
+This is a library, you won't install it, you will use it in your cool projects.
+
+To see developer documentation, run `doxygen` in the project directory and open
+html/index.html in your favorite HTML viewer. Examine example.cpp as well.
+
+To compile your app with this library, run:
+
+    g++ -c csuitcase.cpp
+    g++ csuitcase.o example.cpp -o example
+
+Or perform similar steps depending on your platform.
+
+If you really want to install this, you'll need to compile it as a shared library and put .so file to /usr/local/lib or similar and the header file to /usr/local/include or similar.
