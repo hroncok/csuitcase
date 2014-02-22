@@ -37,35 +37,49 @@ public:
 	virtual CStuff * clone() const = 0;
 };
 
+/// Clothes
 class CClothes : public CStuff {
 protected:
 	string name;
 public:
+	/// Constructor
+	/** \param n Name of the clothes (such as *white underwear*) */
 	CClothes(string = "");
 	virtual ~CClothes();
+	/** \return "Clothes (<name>)" */
 	virtual string to_string(string) const;
 	virtual CClothes * clone() const;
 };
 
+/// Shoes
 class CShoes : public CStuff {
 public:
 	CShoes();
+	/** \return "Shoes" */
 	virtual string to_string(string) const;
 	virtual CShoes * clone() const;
 };
 
+/// Knife
+/** Knife with a blade of given length.
+ *  Blades longer than 7 cm are considered dangerous. */
 class CKnife : public CStuff {
 protected:
 	int blade;
 public:
+	/// Constructor
+	/** \param b Length of the blade in cm */
 	CKnife(int = 0);
+	/** \return "Knife <length_of_blade> cm" */
 	virtual string to_string(string) const;
 	virtual CKnife * clone() const;
 };
 
+/// GPS navigator
 class CGPS : public CStuff {
 public:
 	CGPS();
+	/** \return "GPS" **/
 	virtual string to_string(string) const;
 	virtual CGPS * clone() const;
 };
