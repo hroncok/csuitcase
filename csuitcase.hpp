@@ -84,6 +84,7 @@ public:
 	virtual CGPS * clone() const;
 };
 
+/// Suitcase
 class CSuitcase : public CStuff {
 protected:
 	CStuff ** stuff;
@@ -92,13 +93,18 @@ protected:
 	void makeBigger();
 public:
 	CSuitcase();
+	/// Constructor that deep copies a given suitcase
 	CSuitcase(const CSuitcase &);
+	/// Assignment operator that deep copies a given suitcase
 	CSuitcase & operator=(const CSuitcase &);
 	~CSuitcase();
 	virtual int Weight() const;
 	virtual bool Danger() const;
 	virtual int Count() const;
+	/// Add stuff to the suitcase
+	/** \param x Stuff to add (will be copied) */
 	CSuitcase & Add(const CStuff &);
+	/// Puts textual representation of the suitcase and all its content to given stream
 	friend ostream &operator<<(ostream &, const CSuitcase &);
 	virtual string to_string(string) const;
 	virtual CSuitcase * clone() const;
