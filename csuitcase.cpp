@@ -1,3 +1,7 @@
+/** \file csuitcase.cpp
+ *  Implementation of CSuitcase classes.
+ *  \author Miro Hrončok <miroslav.hroncok@fit.cvut.cz> */
+
 #include "csuitcase.hpp"
 
 CStuff::CStuff() {

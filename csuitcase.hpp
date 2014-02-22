@@ -1,3 +1,7 @@
+/** \file csuitcase.hpp
+ *  Header for CSuitcase classes.
+ *  \author Miro Hrončok <miroslav.hroncok@fit.cvut.cz> */
+
 #ifndef _CSUITCASE_
 #define _CSUITCASE_
 

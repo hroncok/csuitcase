@@ -1,3 +1,7 @@
+/** \file example.cpp
+ *  Example usage of CSuitcase. Based on Progtest.
+ *  \author Miro Hrončok <miroslav.hroncok@fit.cvut.cz> */
+
 #include <iostream>
 #include "csuitcase.hpp"
 
