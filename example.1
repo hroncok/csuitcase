@@ -1,0 +1,64 @@
+.TH EXAMPLE 1 "2014/04/18" "User Commands"
+.SH NAME
+example - CSuitCase command line example creator
+.SH SYNOPSIS
+.B example
+[-gsd]
+[-c
+.I name
+]
+[-k
+.I blade
+]
+
+.B example
+--help
+.SH DESCRIPTION
+This is example of how to use CSuitCase.
+
+It will create a suitcase and will put stuff you set inside.
+By adding command line switches, you can add stuff to the suitcase.
+.SH OPTIONS
+.TP 12
+.B --help
+Displays help end exits
+.TP
+.B --clothes
+Adds clothes of given name to the suitcase
+.TP
+.B --knife
+Adds knife of given blade length to the suitcase
+.TP
+.B --gps
+Adds a GPS navigator to the suitcase
+.TP
+.B --shoes
+Adds a pair of shoes to the suitcase
+.TP
+.B --depth
+Adds a copy of the suitcase to the suitcase given times
+.PP
+Note that the order of switches matters!
+.SH EXAMPLES
+.TP 2
+.B example
+Creates an empty suitcase and outputs it's weight
+.TP
+.B example -d 5 -s
+Creates a suitcase, adds itself to the suitcase 5 times and than adds shoes.
+.TP
+.B example -s -d5
+Creates a suitcase, adds shoes, than adds itself to the suitcase 5 times (including the shoes).
+.TP
+.B example -gsc shirt
+Creates a suitcase, adds a GPS navigator, shoes and a shirt.
+.SH "SEE ALSO"
+For further developer documentation, generate HTML documentation by running
+.I doxygen 
+from the project directory.
+.SH AUTHOR
+Miro Hrončok <misrolav.hroncok@fit.cvut.cz>
+.SH COPYRIGHT
+This project is available under the terms of DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE version 2.
+See COPYING file for more information.
+
