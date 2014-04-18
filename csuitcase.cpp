@@ -2,6 +2,7 @@
  *  Implementation of CSuitcase classes.
  *  \author Miro Hrončok <miroslav.hroncok@fit.cvut.cz> */
 
+#include <iostream>
 #include "csuitcase.hpp"
 
 CStuff::CStuff() {
@@ -179,7 +180,7 @@ string CSuitcase::to_string(string pre) const {
 	}
 	for (int i = 0; i < (cs-1); i++)
 		ss << stuff[i]->to_string(pre+"+-") << endl;
-	if (ds > 0)
+	if (cs > 0)
 		ss << stuff[cs-1]->to_string(pre+"\\-");
 	return ss.str();
 }
