@@ -12,11 +12,11 @@ void showHelp() {
 	cout << "It will create a suitcase and will put stuff you set inside" << endl;
 	cout << "By adding command line switches, you can add stuff to the suitcase" << endl << endl;
 	cout << "--help            Displays this help end exits" << endl;
-	cout << "--clothes <<name>  Adds clothes of given name to the suitcase" << endl;
-	cout << "--knife <<blade>   Adds knife of given blade length to the suitcase" << endl;
+	cout << "--clothes <name>  Adds clothes of given name to the suitcase" << endl;
+	cout << "--knife <blade>   Adds knife of given blade length to the suitcase" << endl;
 	cout << "--gps             Adds a GPS navigator to the suitcase" << endl;
-	cout << "--shoes          Adds a pair of shoes to the suitcase" << endl;
-	cout << "--depth <<value>   Adds a copy of the suitcase to the suitcase <<value> times" << endl;
+	cout << "--shoes           Adds a pair of shoes to the suitcase" << endl;
+	cout << "--depth <value>   Adds a copy of the suitcase to the suitcase <value> times" << endl;
 }
 
 int main(int argc, char **argv) {
