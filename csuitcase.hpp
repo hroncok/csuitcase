@@ -4,8 +4,8 @@
 
 /** \mainpage
  *  This project implements a suitcase and stuff you can put in.
- *   * a
- *   * b */
+ *   * You can put suitcases into suitcases
+ *  \image html suitcase.jpg */
 
 #ifndef _CSUITCASE_
 #define _CSUITCASE_

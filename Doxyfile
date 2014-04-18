@@ -3,3 +3,4 @@ PROJECT_BRIEF  = "Several C++ classes representing various stuff you can put int
 GENERATE_LATEX = NO
 HAVE_DOT       = YES
 UML_LOOK       = YES
+IMAGE_PATH     = "."
