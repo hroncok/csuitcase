@@ -3,319 +3,79 @@
  *  \author Miro Hrončok <miroslav.hroncok@fit.cvut.cz> */
 
 #include <iostream>
+#include <getopt.h>
+#include <cstdlib>
 #include "csuitcase.hpp"
 
-int main(void) {
-	CSuitcase T0;
-	T0 . Add ( CKnife ( 7 ) );
-	T0 . Add ( CGPS () );
-	T0 . Add ( CClothes ( "red T-shirt" ) );
-	T0 . Add ( CShoes () );
-	cout << T0;
-	/*-----------------
-	Suitcase
-	+-Knife 7 cm
-	+-GPS
-	+-Clothes (red T-shirt)
-	\-Shoes
-	-------------------*/
-	// T0 . Weight () = 3600, T0 . Count () = 5, T0 . Danger () = false
-	cout << T0 . Weight () << endl << T0 . Count ()  << endl <<  T0 . Danger ()  << endl;
+void showHelp() {
+	cout << "This is example of CSuitCase" << endl << endl;
+	cout << "It will create a suitcase and will put stuff you set inside" << endl;
+	cout << "By adding command line switches, you can add stuff to the suitcase" << endl << endl;
+	cout << "--help            Displays this help end exits" << endl;
+	cout << "--clothes <<name>  Adds clothes of given name to the suitcase" << endl;
+	cout << "--knife <<blade>   Adds knife of given blade length to the suitcase" << endl;
+	cout << "--gps             Adds a GPS navigator to the suitcase" << endl;
+	cout << "--shoes          Adds a pair of shoes to the suitcase" << endl;
+	cout << "--depth <<value>   Adds a copy of the suitcase to the suitcase <<value> times" << endl;
+}
 
-	CSuitcase T1;
-	T1 . Add ( CKnife ( 5 ) );
-	T1 . Add ( CClothes ( "red T-shirt" ) );
-	T1 . Add ( CClothes ( "blue jeans" ) );
-	T1 . Add ( CShoes () );
-	cout << T1;
-	/*-----------------
-	Suitcase
-	+-Knife 5 cm
-	+-Clothes (red T-shirt)
-	+-Clothes (blue jeans)
-	\-Shoes
-	-------------------*/
-	// T1 . Weight () = 3850, T1 . Count () = 5, T1 . Danger () = false
-	cout << T1 . Weight () << endl << T1 . Count ()  << endl <<  T1 . Danger ()  << endl;
+int main(int argc, char **argv) {
+	CSuitcase example;
+	while (1) {
+		static struct option long_options[] = {
+			{"help",			no_argument,		0,	'h'},
+			{"clothes",			required_argument,	0,	'c'},
+			{"knife",			required_argument,	0,	'k'},
+			{"gps",				no_argument,		0,	'g'},
+			{"shoes",			no_argument,		0,	's'},
+			{"depth",			required_argument,	0,	'd'},
+			{0, 0, 0, 0}
+		};
 
-	CSuitcase T2;
-	T2 . Add ( CKnife ( 8 ) ) . Add ( CClothes ( "white underwear" ) ) . Add ( CShoes () );
-	T2 . Add ( CClothes ( "red T-shirt" ) );
-	T2 . Add ( CClothes ( "brown jacket" ) );
-	T2 . Add ( CShoes () );
-	cout << T2;
-	/*-----------------
-	Suitcase
-	+-Knife 8 cm
-	+-Clothes (white underwear)
-	+-Shoes
-	+-Clothes (red T-shirt)
-	+-Clothes (brown jacket)
-	\-Shoes
-	-------------------*/
-	// T2 . Weight () = 5100, T2 . Count () = 7, T2 . Danger () = true
-	cout << T2 . Weight () << endl << T2 . Count ()  << endl <<  T2 . Danger ()  << endl;
+		// getopt_long stores the option index here
+		int option_index = 0;
 
-	CSuitcase T3;
-	T3 . Add ( CKnife ( 8 ) ) . Add ( CClothes ( "white underwear" ) ) . Add ( CShoes () );
-	T3 . Add ( T0 ) . Add ( T1 ) . Add ( T2 );
-	cout << T3;
-	/*-----------------
-	Suitcase
-	+-Knife 8 cm
-	+-Clothes (white underwear)
-	+-Shoes
-	+-Suitcase
-	| +-Knife 7 cm
-	| +-GPS
-	| +-Clothes (red T-shirt)
-	| \-Shoes
-	+-Suitcase
-	| +-Knife 5 cm
-	| +-Clothes (red T-shirt)
-	| +-Clothes (blue jeans)
-	| \-Shoes
-	\-Suitcase
-	  +-Knife 8 cm
-	  +-Clothes (white underwear)
-	  +-Shoes
-	  +-Clothes (red T-shirt)
-	  +-Clothes (brown jacket)
-	  \-Shoes
-	-------------------*/
-	// T3 . Weight () = 15900, T3 . Count () = 21, T3 . Danger () = true
-	cout << T3 . Weight () << endl << T3 . Count ()  << endl <<  T3 . Danger ()  << endl;
+		int c = getopt_long(argc, argv, "hc:k:gsd:", long_options, &option_index);
 
-	T3 . Add ( T3 );
-	cout << T3;
-	/*-----------------
-	Suitcase
-	+-Knife 8 cm
-	+-Clothes (white underwear)
-	+-Shoes
-	+-Suitcase
-	| +-Knife 7 cm
-	| +-GPS
-	| +-Clothes (red T-shirt)
-	| \-Shoes
-	+-Suitcase
-	| +-Knife 5 cm
-	| +-Clothes (red T-shirt)
-	| +-Clothes (blue jeans)
-	| \-Shoes
-	+-Suitcase
-	| +-Knife 8 cm
-	| +-Clothes (white underwear)
-	| +-Shoes
-	| +-Clothes (red T-shirt)
-	| +-Clothes (brown jacket)
-	| \-Shoes
-	\-Suitcase
-	  +-Knife 8 cm
-	  +-Clothes (white underwear)
-	  +-Shoes
-	  +-Suitcase
-	  | +-Knife 7 cm
-	  | +-GPS
-	  | +-Clothes (red T-shirt)
-	  | \-Shoes
-	  +-Suitcase
-	  | +-Knife 5 cm
-	  | +-Clothes (red T-shirt)
-	  | +-Clothes (blue jeans)
-	  | \-Shoes
-	  \-Suitcase
-		+-Knife 8 cm
-		+-Clothes (white underwear)
-		+-Shoes
-		+-Clothes (red T-shirt)
-		+-Clothes (brown jacket)
-		\-Shoes
-	-------------------*/
-	// T3 . Weight () = 31800, T3 . Count () = 42, T3 . Danger () = true
-	cout << T3 . Weight () << endl << T3 . Count ()  << endl <<  T3 . Danger ()  << endl;
+		// detect the end of the options
+		if (c == -1) {
+			break;
+		}
 
-	T3 . Add ( T3 );
-	cout << T3;
-	/*-----------------
-	Suitcase
-	+-Knife 8 cm
-	+-Clothes (white underwear)
-	+-Shoes
-	+-Suitcase
-	| +-Knife 7 cm
-	| +-GPS
-	| +-Clothes (red T-shirt)
-	| \-Shoes
-	+-Suitcase
-	| +-Knife 5 cm
-	| +-Clothes (red T-shirt)
-	| +-Clothes (blue jeans)
-	| \-Shoes
-	+-Suitcase
-	| +-Knife 8 cm
-	| +-Clothes (white underwear)
-	| +-Shoes
-	| +-Clothes (red T-shirt)
-	| +-Clothes (brown jacket)
-	| \-Shoes
-	+-Suitcase
-	| +-Knife 8 cm
-	| +-Clothes (white underwear)
-	| +-Shoes
-	| +-Suitcase
-	| | +-Knife 7 cm
-	| | +-GPS
-	| | +-Clothes (red T-shirt)
-	| | \-Shoes
-	| +-Suitcase
-	| | +-Knife 5 cm
-	| | +-Clothes (red T-shirt)
-	| | +-Clothes (blue jeans)
-	| | \-Shoes
-	| \-Suitcase
-	|   +-Knife 8 cm
-	|   +-Clothes (white underwear)
-	|   +-Shoes
-	|   +-Clothes (red T-shirt)
-	|   +-Clothes (brown jacket)
-	|   \-Shoes
-	\-Suitcase
-	  +-Knife 8 cm
-	  +-Clothes (white underwear)
-	  +-Shoes
-	  +-Suitcase
-	  | +-Knife 7 cm
-	  | +-GPS
-	  | +-Clothes (red T-shirt)
-	  | \-Shoes
-	  +-Suitcase
-	  | +-Knife 5 cm
-	  | +-Clothes (red T-shirt)
-	  | +-Clothes (blue jeans)
-	  | \-Shoes
-	  +-Suitcase
-	  | +-Knife 8 cm
-	  | +-Clothes (white underwear)
-	  | +-Shoes
-	  | +-Clothes (red T-shirt)
-	  | +-Clothes (brown jacket)
-	  | \-Shoes
-	  \-Suitcase
-		+-Knife 8 cm
-		+-Clothes (white underwear)
-		+-Shoes
-		+-Suitcase
-		| +-Knife 7 cm
-		| +-GPS
-		| +-Clothes (red T-shirt)
-		| \-Shoes
-		+-Suitcase
-		| +-Knife 5 cm
-		| +-Clothes (red T-shirt)
-		| +-Clothes (blue jeans)
-		| \-Shoes
-		\-Suitcase
-		  +-Knife 8 cm
-		  +-Clothes (white underwear)
-		  +-Shoes
-		  +-Clothes (red T-shirt)
-		  +-Clothes (brown jacket)
-		  \-Shoes
-	-------------------*/
-	// T3 . Weight () = 63600, T3 . Count () = 84, T3 . Danger () = true
-	cout << T3 . Weight () << endl << T3 . Count ()  << endl <<  T3 . Danger ()  << endl;
+		switch (c) {
+			case 'h':
+				showHelp();
+				return 0;
 
-	T3 . Add ( CGPS () );
-	cout << T3;
-	/*-----------------
-	Suitcase
-	+-Knife 8 cm
-	+-Clothes (white underwear)
-	+-Shoes
-	+-Suitcase
-	| +-Knife 7 cm
-	| +-GPS
-	| +-Clothes (red T-shirt)
-	| \-Shoes
-	+-Suitcase
-	| +-Knife 5 cm
-	| +-Clothes (red T-shirt)
-	| +-Clothes (blue jeans)
-	| \-Shoes
-	+-Suitcase
-	| +-Knife 8 cm
-	| +-Clothes (white underwear)
-	| +-Shoes
-	| +-Clothes (red T-shirt)
-	| +-Clothes (brown jacket)
-	| \-Shoes
-	+-Suitcase
-	| +-Knife 8 cm
-	| +-Clothes (white underwear)
-	| +-Shoes
-	| +-Suitcase
-	| | +-Knife 7 cm
-	| | +-GPS
-	| | +-Clothes (red T-shirt)
-	| | \-Shoes
-	| +-Suitcase
-	| | +-Knife 5 cm
-	| | +-Clothes (red T-shirt)
-	| | +-Clothes (blue jeans)
-	| | \-Shoes
-	| \-Suitcase
-	|   +-Knife 8 cm
-	|   +-Clothes (white underwear)
-	|   +-Shoes
-	|   +-Clothes (red T-shirt)
-	|   +-Clothes (brown jacket)
-	|   \-Shoes
-	+-Suitcase
-	| +-Knife 8 cm
-	| +-Clothes (white underwear)
-	| +-Shoes
-	| +-Suitcase
-	| | +-Knife 7 cm
-	| | +-GPS
-	| | +-Clothes (red T-shirt)
-	| | \-Shoes
-	| +-Suitcase
-	| | +-Knife 5 cm
-	| | +-Clothes (red T-shirt)
-	| | +-Clothes (blue jeans)
-	| | \-Shoes
-	| +-Suitcase
-	| | +-Knife 8 cm
-	| | +-Clothes (white underwear)
-	| | +-Shoes
-	| | +-Clothes (red T-shirt)
-	| | +-Clothes (brown jacket)
-	| | \-Shoes
-	| \-Suitcase
-	|   +-Knife 8 cm
-	|   +-Clothes (white underwear)
-	|   +-Shoes
-	|   +-Suitcase
-	|   | +-Knife 7 cm
-	|   | +-GPS
-	|   | +-Clothes (red T-shirt)
-	|   | \-Shoes
-	|   +-Suitcase
-	|   | +-Knife 5 cm
-	|   | +-Clothes (red T-shirt)
-	|   | +-Clothes (blue jeans)
-	|   | \-Shoes
-	|   \-Suitcase
-	|     +-Knife 8 cm
-	|     +-Clothes (white underwear)
-	|     +-Shoes
-	|     +-Clothes (red T-shirt)
-	|     +-Clothes (brown jacket)
-	|     \-Shoes
-	\-GPS
-	-------------------*/
-	// T3 . Weight () = 63850, T3 . Count () = 85, T3 . Danger () = true
-	cout << T3 . Weight () << endl << T3 . Count ()  << endl <<  T3 . Danger ()  << endl;
+			case 'c':
+				example.Add(CClothes(optarg));
+				break;
+
+			case 'k':
+				example.Add(CKnife(atoi(optarg)));
+				break;
+
+			case 'g':
+				example.Add(CGPS());
+				break;
+
+			case 's':
+				example.Add(CShoes());
+				break;
+
+			case 'd':
+				for (int i = 0; i < atoi(optarg); i++)
+					example.Add(example);
+				break;
+
+			default:
+				showHelp();
+				return 1;
+		}
+	}
+	cout << "Weight: "  << example.Weight() << endl;
+	cout << "Count: " << example.Count() << endl;
+	cout <<  "Danger: " << example.Danger()  << endl;
+	cout << example << endl;
 	return 0;
 }
